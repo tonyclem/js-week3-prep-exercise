@@ -12,7 +12,11 @@ function getCurrentState(trafficLight) {
 }
 
 function getNextStateIndex(trafficLight) {
-  let nextCurrentState = trafficLight.stateIndex++;
+  let nextCurrentState = trafficLight.stateIndex;
+  if (nextCurrentState > 2) {
+    nextCurrentState = 0;
+  }
+  // trafficLight.stateIndex++;
   return nextCurrentState;
 }
 
@@ -32,7 +36,6 @@ function main() {
   for (let cycle = 0; cycle < 6; cycle++) {
     const currentState = getCurrentState(trafficLight);
     console.log(cycle, "The traffic light is now", currentState);
-
     waitSync(1); // Wait a second before going to the next state
     trafficLight.stateIndex = getNextStateIndex(trafficLight);
   }
@@ -44,7 +47,7 @@ main();
 0 The traffic light is now green
 1 The traffic light is now orange
 2 The traffic light is now red
-3 The traffic light is now undefined
-4 The traffic light is now undefined
-5 The traffic light is now undefined
+3 The traffic light is now green 
+4 The traffic light is now orange 
+5 The traffic light is now red 
 */
